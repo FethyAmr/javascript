@@ -63,3 +63,36 @@ function addUp(num){
 
 }
 addUp(12)
+
+function format(time){
+   
+    var hrs = ~~(time/3600);
+    var mins = ~~((time % 3600) /60);
+    var secs= ~~time%60;
+    
+    var ret = "";
+         if(hrs > 0){
+            ret += "" + hrs +":" + (mins < 10 ? "0" : "");
+    }
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+    }
+    console.log(format(3700));
+    // "01:01:40"
+    function generatePassword(num){
+        var password = ""
+        if ( num < 6 || num > 15){
+            console.log("ok")
+        }
+        else {
+            for(i=1; i<=num; i++)
+            var roundedNumber = Math.floor(Math.random() * (90+ 65 + 1) + 65);
+            var roundedLetter = String.fromCharCode(roundedNumber);
+            password = roundedLetter + password;
+            console.log("error");
+        }
+        console.log(password)
+        generatePassword(15)
+    }
+    
