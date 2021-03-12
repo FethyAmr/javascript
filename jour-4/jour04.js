@@ -45,10 +45,21 @@ if (num1 > num2 ){
     console.log("isbigger")
 
         }
-else  {  (num1 = num2)
+else  {  (num1 === num2)
  console.log("both are the same")
     }
 }
 
-compare(num1=12)
-compare(num2=5)
+compare(12, 5)
+
+
+
+function addUp(num){
+    var result= 0
+    for( i = 1; i<= num; i++ ){
+        result = result + i 
+    }
+    console.log(result)
+
+}
+addUp(12)
