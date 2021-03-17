@@ -14,3 +14,5 @@ function multiply(number) {
     }
 }
 multiply(process.argv[2]);
+
+
