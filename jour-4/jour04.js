@@ -32,7 +32,7 @@ function checkIfEven(num)
         console.log("odd");
     }
 }
-checkIfEven(7);
+checkIfEven(8);
 
 
 function compare(num1,num2)
