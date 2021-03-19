@@ -11,7 +11,7 @@ console.log(moment().format(' Do MMMM  YYYY, h:mm:ss a'));
 
 var annee = 2020;
 var mois = 03; 
-var jour = 17;
+var jour = 17;   
 
 function formatDate(str) {
     if (str = annee + "-" + mois + "-" + jour) {
