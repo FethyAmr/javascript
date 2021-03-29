@@ -1,3 +1,6 @@
+var prompt = require("prompt");
+
+
 var grid = [
     [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
     [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
@@ -23,110 +26,125 @@ var rover = {
 }
 
 
-function turnRight(rover) {
+function turnLeft(robot) {
 
-    if (rover.direction === 'N') {
-        rover.direction = 'E'
-        console.log(rover.direction)
-    }
-    else if (rover.direction === 'E') {
-        rover.direction = 'S'
-        console.log(rover.direction)
-    }
-    else if (rover.direction === 'S') {
-        rover.direction = 'W'
-        console.log(rover.direction)
-    } else if (rover.direction === 'W') {
-        rover.direction = 'N'
-        console.log(rover.direction)
-    }
+    switch (robot.direction){
+        case 'N': 
+        robot.direction = 'S'
+        break;
 
+        case 'W': 
+        robot.direction = 'S'
+        break;
+
+        case 'S': 
+        robot.direction = 'E'
+        break;
+
+        case 'E': 
+        robot.direction = 'N'
+        break;
+    }
+    console.log('the rover turn to left', robot.direction)
 }
+
+//turnLeft(rover)
+
+function turnRight(robot) {
+
+    switch (robot.direction){
+        case 'N': 
+        robot.direction = 'E'
+        break;
+
+        case 'E': 
+        robot.direction = 'S'
+        break;
+
+        case 'S': 
+        robot.direction = 'W'
+        break;
+
+        case 'W': 
+        robot.direction = 'N'
+        break;
+    }
+    console.log('the rover turn to right', robot.direction)
+}
+
 
 //turnRight(rover)
 
 
-function turnLeft(rover) {
 
+function moveForward(robot) {
 
-    if (rover.direction === 'N') {
-        rover.direction = 'W'
-        console.log(rover.direction)
+    robot.travelLog.push({
+        x: robot.x,
+        y: robot.y 
+    })
+
+    switch (robot.direction){
+        case 'N': 
+        robot.y--
+        break;
+
+        case 'S': 
+        robot.y++
+        break;
+
+        case 'E': 
+        robot.x++
+        break;
+
+        case 'W': 
+        robot.x--
+        break;
     }
-    else if (rover.direction === 'W') {
-        rover.direction = 'S'
-        console.log(rover.direction)
-    }
-    else if (rover.direction === 'S') {
-        rover.direction = 'E'
-        console.log(rover.direction)
-    } else if (rover.direction === 'E') {
-        rover.direction = 'N'
-        console.log(rover.direction)
-    }
+    
+    console.log('the new position of the rover', robot.x, robot.y)
 }
 
 
-//turnLeft(rover)
+//moveForward(rover)
 
 
 
 
 
+function pilotRover(instruction) {
 
-// Object.values(cat)
+    for (var i = 0; i < instruction.length; i++) {
+        switch(instruction.charAt(i)){
 
-
-function moveForward(rover) {
-
-    if (rover.direction === "E") {
-        rover.x = rover.x + 1
-    }
-    else if (rover.direction === "W") {
-        rover.x = rover.x - 1
-    }
-    else if (rover.direction === "N") {
-        rover.y = rover.y - 1
-    }
-    else if (rover.direction === "S") {
-        rover.y = rover.y + 1
-    }
-    //grid[6][5];
-
-}
-//moveForward(rover);
-
-
-
-
-
-function pilotRover(lrf) {
-
-    for (var i = 0; i <= lrf.length; i++) {
-
-        if (lrf.charAt(i) === 'l') {
-
-            rover.travelLog.push(rover.x, rover.y)
-
+            case 'l': 
             turnLeft(rover)
-        }
+            break;
 
-        else if (lrf.charAt(i) === 'r') {
-
-            rover.travelLog.push(rover.x, rover.y)
-
+            case 'r': 
             turnRight(rover)
+            break;
 
-        }
-        else if (lrf.charAt(i) === 'f') {
-
-            rover.travelLog.push(rover.x, rover.y)
-
+            case 'f': 
             moveForward(rover)
+            break;
+
         }
     }
 }
 
 
-pilotRover('lrfllr')
-console.log(rover)
+pilotRover('rrffflff')
+
+console.log('the travel log of the rover',rover.travelLog)
+
+prompt.start();
+
+prompt.get(["instru"]), function(err, result ){
+    if(err){
+        console.log("error")
+        return
+    }else{
+        console.log(result.direction)
+    }
+}
